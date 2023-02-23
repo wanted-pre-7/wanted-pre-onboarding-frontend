@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { deleteTodo, updateTodo } from '../../apis/todo';
-import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { TODO_ACTION_TYPE } from '../../constant/actionTypes';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo);
 
-  const handleChange = (e) => setEditedTitle(e.target.value);
-  const handleEditClick = () => setIsEditing((prev) => !prev);
+  // todo 텍스트 수정
+  const handleChange = useCallback((e) => setEditedTitle(e.target.value), []);
 
-  const handleCheckBox = async (id, title, isCompleted) => {
+  // 수정모드 변경
+  const handleEditClick = useCallback(() => setIsEditing((prev) => !prev), []);
+
+  // 체크 박스 클릭시 todo의 완료 여부를 수정
+  const handleCheckBox = useCallback(async (id, title, isCompleted) => {
     const res = await updateTodo(id, title, !isCompleted);
 
     if (res.status === 200) {
@@ -20,9 +24,10 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
         todo: res.data,
       });
     }
-  };
+  }, []);
 
-  const handleUpdate = async (id, title, isCompleted) => {
+  // todo 전체 수정
+  const handleUpdate = useCallback(async (id, title, isCompleted) => {
     try {
       const res = await updateTodo(id, title, isCompleted);
 
@@ -38,15 +43,16 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
     } catch (error) {
       alert('내용을 확인해 주세요.');
     }
-  };
+  }, []);
 
-  const handleClickDelete = async (id) => {
+  // todo 삭제
+  const handleClickDelete = useCallback(async (id) => {
     const res = await deleteTodo(id);
 
     if (res.status === 204) {
       dispatch({ type: TODO_ACTION_TYPE.DELETE, id });
     }
-  };
+  }, []);
 
   if (isEditing) {
     return (

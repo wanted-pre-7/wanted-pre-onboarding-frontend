@@ -1,28 +1,26 @@
-import { memo, useContext, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import styled from 'styled-components';
 import { getTodos } from '../../apis/todo';
-import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { TODO_ACTION_TYPE } from '../../constant/actionTypes';
+
 import List from './List';
 
-const Lists = () => {
-  const { todos, dispatch } = useContext(todoContext);
-
+const Lists = ({ dispatch, todos }) => {
+  // 마운트 되었을 때 todo 목록을 조회하여 todos에 할당
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       const res = await getTodos();
       if (res.status === 200) {
         dispatch({ type: TODO_ACTION_TYPE.GET, todo: res.data });
       }
-    };
-
-    fetchData();
+    })();
   }, []);
 
   return (
     <div>
       <ul>
-        {todos.length > 0 ? (
-          todos.map((todo) => (
+        {todos?.length > 0 ? (
+          todos?.map((todo) => (
             <List key={todo.id} todo={todo} dispatch={dispatch} />
           ))
         ) : (

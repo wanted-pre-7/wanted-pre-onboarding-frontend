@@ -1,12 +1,12 @@
-import Globalstyles from './components/Globalstyles';
+import Globalstyle from './globalStyle';
 import AuthProvider from './context/AuthProvider';
 import Router from './Router';
 
 const App = () => {
   return (
     <AuthProvider>
+      <Globalstyle />
       <Router />
-      <Globalstyles />
     </AuthProvider>
   );
 };

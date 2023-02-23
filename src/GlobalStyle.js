@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const Globalstyles = createGlobalStyle`
+const Globalstyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -33,4 +33,4 @@ const Globalstyles = createGlobalStyle`
 
 `;
 
-export default Globalstyles;
+export default Globalstyle;

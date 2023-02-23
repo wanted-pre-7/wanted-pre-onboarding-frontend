@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
+import { signIn, signUp } from '../../api/auth';
 import { authDescription } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';
@@ -58,15 +58,11 @@ const AuthForm = ({ mode }) => {
     }
 
     if (mode === 'signup') {
-      try {
-        const res = await signUp(user);
+      const res = await signUp(user);
 
-        if (res.status === 201) {
-          setUser({ email: '', password: '' });
-          navigate('/signin');
-        }
-      } catch (error) {
-        alert('이미 존재하는 사용자입니다.');
+      if (res.status === 201) {
+        setUser({ email: '', password: '' });
+        navigate('/signin');
       }
     }
   };

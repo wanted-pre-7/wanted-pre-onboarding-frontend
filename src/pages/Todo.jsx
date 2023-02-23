@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { createTodo } from '../apis/todo';
 import Button from '../components/common/Button';
@@ -10,13 +9,8 @@ import { todoContext, TODO_ACTION_TYPE } from '../context/TodoProvider';
 
 const Todo = () => {
   const { dispatch } = useContext(todoContext);
-  const {
-    state: { token },
-    dispatch: authDispatch,
-  } = useContext(authContext);
+  const { dispatch: authDispatch } = useContext(authContext);
   const [todoTitle, setTodoTitle] = useState('');
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,12 +27,6 @@ const Todo = () => {
       type: AUTH_ACTION.RESET_TOKEN,
     });
   };
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/signin');
-    }
-  }, [token]);
 
   return (
     <div>

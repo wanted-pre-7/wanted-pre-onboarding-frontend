@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { deleteTodo, updateTodo } from '../../api';
-import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { deleteTodo, updateTodo } from '../../api/todo';
+import { TODO_ACTION_TYPE } from '../../constant/todoConstant';
 
-const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
+const List = ({ todo: { todo, id, isCompleted }, todoDispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo);
 
@@ -14,7 +14,7 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
     const res = await updateTodo(id, title, !isCompleted);
 
     if (res.status === 200) {
-      dispatch({
+      todoDispatch({
         type: TODO_ACTION_TYPE.UPDATE,
         id,
         todo: res.data,
@@ -23,28 +23,24 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   };
 
   const handleUpdate = async (id, title, isCompleted) => {
-    try {
-      const res = await updateTodo(id, title, isCompleted);
+    const res = await updateTodo(id, title, isCompleted);
 
-      if (res.status === 200) {
-        dispatch({
-          type: TODO_ACTION_TYPE.UPDATE,
-          id,
-          todo: res.data,
-        });
-      }
-
-      setIsEditing(false);
-    } catch (error) {
-      alert('내용을 확인해 주세요.');
+    if (res.status === 200) {
+      todoDispatch({
+        type: TODO_ACTION_TYPE.UPDATE,
+        id,
+        todo: res.data,
+      });
     }
+
+    setIsEditing(false);
   };
 
   const handleClickDelete = async (id) => {
     const res = await deleteTodo(id);
 
     if (res.status === 204) {
-      dispatch({ type: TODO_ACTION_TYPE.DELETE, id });
+      todoDispatch({ type: TODO_ACTION_TYPE.DELETE, id });
     }
   };
 

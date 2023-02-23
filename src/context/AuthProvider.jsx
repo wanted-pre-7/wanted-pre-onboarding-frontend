@@ -1,4 +1,5 @@
 import { createContext, useMemo, useReducer } from 'react';
+import { ACCESS_TOKEN } from '../constant/authConstant';
 
 export const authContext = createContext();
 
@@ -8,16 +9,16 @@ export const AUTH_ACTION = {
 };
 
 const initialState = {
-  token: localStorage.getItem('accessToken') || '',
+  token: localStorage.getItem(ACCESS_TOKEN) || '',
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case AUTH_ACTION.SET_TOKEN:
-      localStorage.setItem('accessToken', action.token);
+      localStorage.setItem(ACCESS_TOKEN, action.token);
       return { ...state, token: action.token };
     case AUTH_ACTION.RESET_TOKEN:
-      localStorage.removeItem('accessToken');
+      localStorage.removeItem(ACCESS_TOKEN);
       return { ...state, token: '' };
     default:
       return state;

@@ -1,13 +1,17 @@
 import axiosInstance from './instance';
 
-export const createTodo = (todo) => axiosInstance.post('/todos', { todo });
+export const getTodos = async () => {
+  return axiosInstance.get('/todos');
+};
 
-export const getTodos = () => axiosInstance.get('/todos');
+export const createTodo = async (todo) => {
+  return axiosInstance.post('/todos', { todo });
+};
 
-export const updateTodo = (id, todo, isCompleted) =>
-  axiosInstance.put(`/todos/${id}`, {
-    todo,
-    isCompleted,
-  });
+export const updateTodo = async (id, todo, isCompleted) => {
+  return axiosInstance.put(`/todos/${id}`, { todo, isCompleted });
+};
 
-export const deleteTodo = (id) => axiosInstance.delete(`/todos/${id}`);
+export const deleteTodo = async (id) => {
+  return axiosInstance.delete(`/todos/${id}`);
+};

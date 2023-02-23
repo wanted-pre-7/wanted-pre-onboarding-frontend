@@ -22,21 +22,17 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   };
 
   const handleUpdate = async (id, title, isCompleted) => {
-    try {
-      const res = await updateTodo(id, title, isCompleted);
+    const res = await updateTodo(id, title, isCompleted);
 
-      if (res.status === 200) {
-        dispatch({
-          type: 'TODO_UPDATE',
-          id,
-          todo: res.data,
-        });
-      }
-
-      setIsEditing(false);
-    } catch (error) {
-      alert('내용을 확인해 주세요.');
+    if (res.status === 200) {
+      dispatch({
+        type: 'TODO_UPDATE',
+        id,
+        todo: res.data,
+      });
     }
+
+    setIsEditing(false);
   };
 
   const handleClickDelete = async (id) => {

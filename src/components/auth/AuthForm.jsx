@@ -41,32 +41,24 @@ const AuthForm = ({ mode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (mode === 'signin') {
-      try {
-        const res = await signIn(user);
+      const res = await signIn(user);
 
-        if (res.status === 200) {
-          dispatch({
-            type: AUTH_ACTION.SET_TOKEN,
-            token: res.data.access_token,
-          });
-          setUser({ email: '', password: '' });
-          navigate('/todo');
-        }
-      } catch (error) {
-        alert('이메일 또는 비밀번호를 확인하세요.');
+      if (res.status === 200) {
+        dispatch({
+          type: AUTH_ACTION.SET_TOKEN,
+          token: res.data.access_token,
+        });
+        setUser({ email: '', password: '' });
+        navigate('/todo');
       }
     }
 
     if (mode === 'signup') {
-      try {
-        const res = await signUp(user);
+      const res = await signUp(user);
 
-        if (res.status === 201) {
-          setUser({ email: '', password: '' });
-          navigate('/signin');
-        }
-      } catch (error) {
-        alert('이미 존재하는 사용자입니다.');
+      if (res.status === 201) {
+        setUser({ email: '', password: '' });
+        navigate('/signin');
       }
     }
   };

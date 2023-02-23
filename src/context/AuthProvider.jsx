@@ -14,7 +14,6 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case AUTH_ACTION.SET_TOKEN:
-      console.log(action.token);
       localStorage.setItem('accessToken', action.token);
       return { ...state, token: action.token };
     case AUTH_ACTION.RESET_TOKEN:

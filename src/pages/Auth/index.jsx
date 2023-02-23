@@ -54,7 +54,6 @@ const SignIn = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log('handlesubmit');
     e.preventDefault();
     if (authMode === '/signin') {
       const res = await signIn(formUser);

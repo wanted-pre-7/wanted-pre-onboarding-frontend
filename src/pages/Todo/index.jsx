@@ -11,17 +11,12 @@ import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
 
 const Todo = () => {
   const { dispatch } = useContext(todoContext);
-  const {
-    state: { token },
-    dispatch: authDispatch,
-  } = useContext(authContext);
+  const { dispatch: authDispatch } = useContext(authContext);
   const [todoTitle, setTodoTitle] = useState('');
 
-  const navigate = useNavigate();
-
+  // todo 생성
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const res = await createTodo(todoTitle);
     if (res.status === 201) {
       dispatch({ type: TODO_ACTION_TYPE.POST, todo: res.data });
@@ -29,17 +24,12 @@ const Todo = () => {
     }
   };
 
+  // 로그아웃
   const handleClickLogOut = () => {
     authDispatch({
       type: AUTH_ACTION.RESET_TOKEN,
     });
   };
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/signin');
-    }
-  }, [token]);
 
   return (
     <div>

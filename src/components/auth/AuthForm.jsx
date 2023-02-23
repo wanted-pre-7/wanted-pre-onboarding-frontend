@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
+import { signIn, signUp } from '../../apis/auth';
 import { authDescription } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';

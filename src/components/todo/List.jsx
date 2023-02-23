@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { deleteTodo, updateTodo } from '../../api';
+import { deleteTodo, updateTodo } from '../../apis/todo';
 import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {

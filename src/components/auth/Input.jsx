@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const Input = ({ type, placeholder, id, user, setUser, handleFocus }) => {
+const Input = ({ type, placeholder, id, formUser, setFormUser }) => {
+  console.log('formUser: ', formUser);
   const onChange = (e) => {
     const { name, value } = e.target;
-
-    setUser({ ...user, [name]: value });
+    setFormUser({ ...formUser, [name]: value });
   };
 
   return (
@@ -12,10 +12,9 @@ const Input = ({ type, placeholder, id, user, setUser, handleFocus }) => {
       type={type}
       id={id}
       placeholder={placeholder}
-      onFocus={handleFocus}
       name={id}
       onChange={onChange}
-      value={user[id]}
+      value={formUser[id]}
       data-testid={`${id}-input`}
     />
   );

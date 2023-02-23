@@ -1,133 +1,89 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
-import { authDescription } from '../../constant/formDescription';
+import { signIn, signUp } from '../../api/auth';
+import { AUTH_DESCRIPTION } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';
 import ActionLink from './ActionLink';
 import LabelInput from './LabelInput';
 
-const AuthForm = ({ mode }) => {
+const AuthForm = ({
+  mode,
+  formError,
+  handleSubmit,
+  handleFocus,
+  formUser,
+  setFormUser,
+  isValidButton,
+}) => {
   const {
-    emailPlaceholder,
-    passwordPlaceholder,
-    buttonText,
-    actionText,
-    question,
-    actionLink,
-  } = authDescription[mode];
-  const { dispatch } = useContext(authContext);
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-  });
-
-  const [focus, setFocus] = useState({
-    email: false,
-    password: false,
-  });
-
-  const navigate = useNavigate();
-
-  const handleFocus = (e) => {
-    const { name } = e.target;
-    setFocus({
-      ...focus,
-      [name]: true,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (mode === 'signin') {
-      try {
-        const res = await signIn(user);
-
-        if (res.status === 200) {
-          dispatch({
-            type: AUTH_ACTION.SET_TOKEN,
-            token: res.data.access_token,
-          });
-          setUser({ email: '', password: '' });
-          navigate('/todo');
-        }
-      } catch (error) {
-        alert('이메일 또는 비밀번호를 확인하세요.');
-      }
-    }
-
-    if (mode === 'signup') {
-      try {
-        const res = await signUp(user);
-
-        if (res.status === 201) {
-          setUser({ email: '', password: '' });
-          navigate('/signin');
-        }
-      } catch (error) {
-        alert('이미 존재하는 사용자입니다.');
-      }
-    }
-  };
+    EMAIL_PLACEHOLDER,
+    PASSWORD_PLACEHOLDER,
+    BUTTON_TEXT,
+    ACTION_TEXT,
+    QUESTION,
+    ACTION_LINK,
+  } = AUTH_DESCRIPTION[mode];
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputWrapper>
+      <S.InputWrapper>
         <LabelInput
           type="text"
           id="email"
           label="이메일"
-          placeholder={emailPlaceholder}
-          user={user}
-          setUser={setUser}
+          placeholder={EMAIL_PLACEHOLDER}
+          formUser={formUser}
+          setFormUser={setFormUser}
           handleFocus={handleFocus}
         />
-        {!user.email.includes('@') && focus.email ? (
-          <ErrorMessage>@를 포함한 이메일을 입력하세요.</ErrorMessage>
+        {formError.email ? (
+          <S.ErrorMessage>@를 포함한 이메일을 입력하세요.</S.ErrorMessage>
         ) : null}
 
         <LabelInput
           type="password"
           id="password"
           label="비밀번호"
-          placeholder={passwordPlaceholder}
-          user={user}
-          setUser={setUser}
+          placeholder={PASSWORD_PLACEHOLDER}
+          formUser={formUser}
+          setFormUser={setFormUser}
           handleFocus={handleFocus}
         />
-        {user.password.length < 8 && focus.password ? (
-          <ErrorMessage>8자 이상의 비밀번호를 입력하세요.</ErrorMessage>
+        {formError.password ? (
+          <S.ErrorMessage>8자 이상의 비밀번호를 입력하세요.</S.ErrorMessage>
         ) : null}
-      </InputWrapper>
-      <ActionWrapper>
+      </S.InputWrapper>
+      <S.ActionWrapper>
         <Button
           type="submit"
-          disabled={!user.email.includes('@') || user.password.length < 8}
+          disabled={isValidButton}
           data-testid={`${mode}-button`}
         >
-          {buttonText}
+          {BUTTON_TEXT}
         </Button>
-        <ActionLink question={question} to={actionLink} text={actionText} />
-      </ActionWrapper>
+        <ActionLink question={QUESTION} to={ACTION_LINK} text={ACTION_TEXT} />
+      </S.ActionWrapper>
     </form>
   );
 };
 
-const InputWrapper = styled.div`
+const S = {};
+S.InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
 `;
 
-const ActionWrapper = styled.div`
+S.ActionWrapper = styled.div`
   display: flex;
   gap: 8px;
   margin-top: 16px;
   align-items: center;
 `;
 
-const ErrorMessage = styled.p`
+S.ErrorMessage = styled.p`
   color: #ef4444;
   font-size: 14px;
 `;

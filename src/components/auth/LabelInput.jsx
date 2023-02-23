@@ -7,9 +7,8 @@ const LabelInput = ({
   placeholder,
   type,
   id,
-  user,
-  setUser,
-  handleFocus,
+  formUser,
+  setFormUser,
 }) => {
   return (
     <Wrapper>
@@ -19,9 +18,8 @@ const LabelInput = ({
         name={id}
         placeholder={placeholder}
         type={type}
-        user={user}
-        handleFocus={handleFocus}
-        setUser={setUser}
+        formUser={formUser}
+        setFormUser={setFormUser}
       />
     </Wrapper>
   );

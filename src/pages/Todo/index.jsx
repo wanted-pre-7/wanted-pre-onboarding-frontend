@@ -4,8 +4,8 @@ import Button from '../../components/common/Button';
 import Heading from '../../components/common/Heading';
 import Lists from '../../components/todo/Lists';
 import TodoForm from '../../components/todo/TodoForm';
-import { TODO_ACTION_TYPE } from '../../constant/actionTypes';
-import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
+import { AUTH_ACTION, TODO_ACTION_TYPE } from '../../constant/actionTypes';
+import { authContext } from '../../context/AuthProvider';
 
 const initialState = [];
 
@@ -39,18 +39,21 @@ const Todo = () => {
   }, []);
 
   return (
-    <div>
+    <Wrapper>
       <Header>
         <Heading title="Todo ✔️" />
         <TodoForm dispatch={dispatch} />
-        <Button type="button" onClick={handleClickLogOut}>
-          로그아웃
-        </Button>
+        <Button onClick={handleClickLogOut}>로그아웃</Button>
       </Header>
       <Lists dispatch={dispatch} todos={todos} />
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Header = styled.header`
   display: flex;

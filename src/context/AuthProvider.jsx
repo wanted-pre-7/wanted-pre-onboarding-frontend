@@ -1,11 +1,7 @@
 import { createContext, useMemo, useReducer } from 'react';
+import { AUTH_ACTION } from '../constant/actionTypes';
 
 export const authContext = createContext();
-
-export const AUTH_ACTION = {
-  SET_TOKEN: 'SET_TOKEN',
-  RESET_TOKEN: 'RESET_TOKEN',
-};
 
 const initialState = {
   token: localStorage.getItem('accessToken') || '',

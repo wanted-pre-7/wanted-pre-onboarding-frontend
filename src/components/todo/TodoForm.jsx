@@ -41,8 +41,8 @@ export default TodoForm;
 
 const Form = styled.form`
   display: flex;
+  align-items: center;
   gap: 16px;
-  padding-top: 16px;
 `;
 
 const Input = styled.input`

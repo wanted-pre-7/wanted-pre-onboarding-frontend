@@ -2,8 +2,9 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { signIn, signUp } from '../../apis/auth';
+import { AUTH_ACTION } from '../../constant/actionTypes';
 import { authDescription } from '../../constant/formDescription';
-import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
+import { authContext } from '../../context/AuthProvider';
 import Button from '../common/Button';
 import ActionLink from './ActionLink';
 import LabelInput from './LabelInput';
@@ -33,6 +34,7 @@ const AuthForm = ({ mode }) => {
 
   const navigate = useNavigate();
 
+  /** 해당하는 input으로 focus */
   const handleFocus = (e) => {
     const { name } = e.target;
     setFocus({
@@ -41,6 +43,7 @@ const AuthForm = ({ mode }) => {
     });
   };
 
+  /** 로그인 실행 */
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (mode === 'signin') {
@@ -60,6 +63,7 @@ const AuthForm = ({ mode }) => {
       }
     }
 
+    /** 회원가입 실행 */
     if (mode === 'signup') {
       try {
         const res = await signUp(user);

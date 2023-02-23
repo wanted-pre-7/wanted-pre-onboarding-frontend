@@ -1,12 +1,12 @@
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useMemo, useReducer } from 'react';
 
 export const todoContext = createContext();
 
 export const TODO_ACTION_TYPE = {
-  GET: "GET",
-  POST: "POST",
-  UPDATE: "UPDATE",
-  DELETE: "DELETE",
+  GET: 'GET',
+  POST: 'POST',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
 };
 
 const initialState = [];

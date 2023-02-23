@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { authContext } from "../../context/AuthProvider";
+import { useContext, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { authContext } from '../../context/AuthProvider';
 
 const Root = () => {
   const {
@@ -10,7 +10,7 @@ const Root = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/todo");
+      navigate('/todo');
     }
   }, [token]);
 

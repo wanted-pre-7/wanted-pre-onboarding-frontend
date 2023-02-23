@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { deleteTodo, updateTodo } from "../../api";
-import { TODO_ACTION_TYPE } from "../../context/TodoProvider";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { deleteTodo, updateTodo } from '../../api';
+import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -36,7 +36,7 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
 
       setIsEditing(false);
     } catch (error) {
-      alert("내용을 확인해 주세요.");
+      alert('내용을 확인해 주세요.');
     }
   };
 
@@ -131,7 +131,7 @@ const CheckInputWrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     cursor: pointer;
     width: 16px;
     height: 16px;
@@ -142,7 +142,7 @@ const CheckInputWrapper = styled.div`
 
 const TodoTitle = styled.span`
   text-decoration: ${({ isCompleted }) =>
-    isCompleted ? "line-through" : "none"};
+    isCompleted ? 'line-through' : 'none'};
 `;
 
 const TextInput = styled.input`

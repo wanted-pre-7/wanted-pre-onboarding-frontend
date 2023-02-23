@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { signIn, signUp } from "../../api";
-import { authDescription } from "../../constant/formDescription";
-import { authContext, AUTH_ACTION } from "../../context/AuthProvider";
-import Button from "../common/Button";
-import ActionLink from "./ActionLink";
-import LabelInput from "./LabelInput";
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { signIn, signUp } from '../../api';
+import { authDescription } from '../../constant/formDescription';
+import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
+import Button from '../common/Button';
+import ActionLink from './ActionLink';
+import LabelInput from './LabelInput';
 
 const AuthForm = ({ mode }) => {
   const {
@@ -19,8 +19,8 @@ const AuthForm = ({ mode }) => {
   } = authDescription[mode];
   const { dispatch } = useContext(authContext);
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [focus, setFocus] = useState({
@@ -40,7 +40,7 @@ const AuthForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (mode === "signin") {
+    if (mode === 'signin') {
       try {
         const res = await signIn(user);
 
@@ -49,24 +49,24 @@ const AuthForm = ({ mode }) => {
             type: AUTH_ACTION.SET_TOKEN,
             token: res.data.access_token,
           });
-          setUser({ email: "", password: "" });
-          navigate("/todo");
+          setUser({ email: '', password: '' });
+          navigate('/todo');
         }
       } catch (error) {
-        alert("이메일 또는 비밀번호를 확인하세요.");
+        alert('이메일 또는 비밀번호를 확인하세요.');
       }
     }
 
-    if (mode === "signup") {
+    if (mode === 'signup') {
       try {
         const res = await signUp(user);
 
         if (res.status === 201) {
-          setUser({ email: "", password: "" });
-          navigate("/signin");
+          setUser({ email: '', password: '' });
+          navigate('/signin');
         }
       } catch (error) {
-        alert("이미 존재하는 사용자입니다.");
+        alert('이미 존재하는 사용자입니다.');
       }
     }
   };
@@ -83,7 +83,7 @@ const AuthForm = ({ mode }) => {
           setUser={setUser}
           handleFocus={handleFocus}
         />
-        {!user.email.includes("@") && focus.email ? (
+        {!user.email.includes('@') && focus.email ? (
           <ErrorMessage>@를 포함한 이메일을 입력하세요.</ErrorMessage>
         ) : null}
 
@@ -103,7 +103,7 @@ const AuthForm = ({ mode }) => {
       <ActionWrapper>
         <Button
           type="submit"
-          disabled={!user.email.includes("@") || user.password.length < 8}
+          disabled={!user.email.includes('@') || user.password.length < 8}
           data-testid={`${mode}-button`}
         >
           {buttonText}

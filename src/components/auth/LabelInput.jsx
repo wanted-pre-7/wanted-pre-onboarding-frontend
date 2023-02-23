@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Input from "./Input";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Input from './Input';
 
 const LabelInput = ({
   label,

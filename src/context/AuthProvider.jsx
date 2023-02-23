@@ -1,24 +1,24 @@
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useMemo, useReducer } from 'react';
 
 export const authContext = createContext();
 
 export const AUTH_ACTION = {
-  SET_TOKEN: "SET_TOKEN",
-  RESET_TOKEN: "RESET_TOKEN",
+  SET_TOKEN: 'SET_TOKEN',
+  RESET_TOKEN: 'RESET_TOKEN',
 };
 
 const initialState = {
-  token: localStorage.getItem("accessToken") || "",
+  token: localStorage.getItem('accessToken') || '',
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case AUTH_ACTION.SET_TOKEN:
-      localStorage.setItem("accessToken", action.token);
+      localStorage.setItem('accessToken', action.token);
       return { ...state, token: action.token };
     case AUTH_ACTION.RESET_TOKEN:
-      localStorage.removeItem("accessToken");
-      return { ...state, token: "" };
+      localStorage.removeItem('accessToken');
+      return { ...state, token: '' };
     default:
       return state;
   }

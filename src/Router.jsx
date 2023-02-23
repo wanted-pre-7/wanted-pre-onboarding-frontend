@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/common/Layout";
-import TodoProvider from "./context/TodoProvider";
-import Root from "./pages/Root";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Todo from "./pages/Todo";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/common/Layout';
+import TodoProvider from './context/TodoProvider';
+import Root from './pages/Root';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Todo from './pages/Todo';
 
 const Router = () => {
   return (

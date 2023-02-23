@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Input = ({ type, placeholder, id, user, setUser, handleFocus }) => {
   const onChange = (e) => {

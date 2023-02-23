@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import AuthForm from "../../components/auth/AuthForm";
-import Heading from "../../components/common/Heading";
-import { authContext } from "../../context/AuthProvider";
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import AuthForm from '../../components/auth/AuthForm';
+import Heading from '../../components/common/Heading';
+import { authContext } from '../../context/AuthProvider';
 
 const SignIn = () => {
   const {
@@ -13,7 +13,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/todo");
+      navigate('/todo');
     }
   }, [token]);
 

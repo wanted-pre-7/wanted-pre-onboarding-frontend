@@ -1,8 +1,8 @@
-import { memo, useContext, useEffect } from "react";
-import styled from "styled-components";
-import { getTodos } from "../../api";
-import { todoContext, TODO_ACTION_TYPE } from "../../context/TodoProvider";
-import List from "./List";
+import { memo, useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import { getTodos } from '../../api';
+import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import List from './List';
 
 const Lists = () => {
   const { todos, dispatch } = useContext(todoContext);

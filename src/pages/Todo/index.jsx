@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createTodo } from '../../api';
+import { createTodo } from '../../apis/todo';
 import Button from '../../components/common/Button';
 import Heading from '../../components/common/Heading';
 

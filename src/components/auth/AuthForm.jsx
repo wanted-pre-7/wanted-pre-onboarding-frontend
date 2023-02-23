@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
+import { signIn, signUp } from '../../apis/auth';
 import { authDescription } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';
@@ -9,6 +9,7 @@ import ActionLink from './ActionLink';
 import LabelInput from './LabelInput';
 
 const AuthForm = ({ mode }) => {
+  // mode 별로 들어갈 텍스트 및 링크 (placeholder,link)
   const {
     emailPlaceholder,
     passwordPlaceholder,
@@ -17,7 +18,9 @@ const AuthForm = ({ mode }) => {
     question,
     actionLink,
   } = authDescription[mode];
+
   const { dispatch } = useContext(authContext);
+
   const [user, setUser] = useState({
     email: '',
     password: '',

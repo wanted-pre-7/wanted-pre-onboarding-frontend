@@ -1,6 +1,6 @@
 import { memo, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { getTodos } from '../../api';
+import { getTodos } from '../../apis/todo';
 import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
 import List from './List';
 

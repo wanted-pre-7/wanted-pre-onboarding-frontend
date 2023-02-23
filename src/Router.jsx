@@ -21,21 +21,31 @@ const Router = () => {
               token ? (
                 <Navigate to="todo" replace />
               ) : (
-                <Navigate to="signin" replace />
+                <Navigate to="/signin" replace />
               )
             }
           />
           <Route
-            path="signin"
-            element={token ? <Navigate to="todo" replace /> : <SignIn />}
+            path="/signin"
+            element={token ? <Navigate to="/todo" replace /> : <SignIn />}
           />
           <Route
-            path="signup"
-            element={token ? <Navigate to="todo" replace /> : <SignUp />}
+            path="/signup"
+            element={token ? <Navigate to="/todo" replace /> : <SignUp />}
           />
           <Route
-            path="todo"
-            element={token ? <Todo /> : <Navigate to="signin" replace />}
+            path="/todo"
+            element={token ? <Todo /> : <Navigate to="/signin" replace />}
+          />
+          <Route
+            path="/*"
+            element={
+              token ? (
+                <Navigate to="/todo" replace />
+              ) : (
+                <Navigate to="/signin" replace />
+              )
+            }
           />
         </Route>
       </Routes>

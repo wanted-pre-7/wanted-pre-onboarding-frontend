@@ -1,4 +1,4 @@
-import Globalstyles from './components/Globalstyles';
+import Globalstyles from './styles/Globalstyles';
 import AuthProvider from './context/AuthProvider';
 import Router from './Router';
 

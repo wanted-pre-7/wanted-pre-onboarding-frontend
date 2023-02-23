@@ -1,23 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import styled from 'styled-components';
 import { createTodo } from '../apis/todo';
 import Button from '../components/common/Button';
 import Heading from '../components/common/Heading';
 import Lists from '../components/todo/Lists';
 import { authContext, AUTH_ACTION } from '../context/AuthProvider';
-import { todoContext, TODO_ACTION_TYPE } from '../context/TodoProvider';
+import reducer from '../reducer';
 
 const Todo = () => {
-  const { dispatch } = useContext(todoContext);
   const { dispatch: authDispatch } = useContext(authContext);
   const [todoTitle, setTodoTitle] = useState('');
+  const [todos, dispatch] = useReducer(reducer, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const res = await createTodo(todoTitle);
     if (res.status === 201) {
-      dispatch({ type: TODO_ACTION_TYPE.POST, todo: res.data });
+      dispatch({ type: 'TODO_POST', todo: res.data });
       setTodoTitle('');
     }
   };
@@ -36,7 +36,7 @@ const Todo = () => {
           로그아웃
         </Button>
       </Header>
-      <Lists />
+      <Lists todos={todos} dispatch={dispatch} />
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { deleteTodo, updateTodo } from '../../apis/todo';
-import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +14,7 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
 
     if (res.status === 200) {
       dispatch({
-        type: TODO_ACTION_TYPE.UPDATE,
+        type: 'TODO_UPDATE',
         id,
         todo: res.data,
       });
@@ -28,7 +27,7 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
 
       if (res.status === 200) {
         dispatch({
-          type: TODO_ACTION_TYPE.UPDATE,
+          type: 'TODO_UPDATE',
           id,
           todo: res.data,
         });
@@ -44,7 +43,7 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
     const res = await deleteTodo(id);
 
     if (res.status === 204) {
-      dispatch({ type: TODO_ACTION_TYPE.DELETE, id });
+      dispatch({ type: 'TODO_DELETE', id });
     }
   };
 

@@ -28,6 +28,8 @@ const AuthForm = ({ mode }) => {
     password: false,
   });
 
+  const [isSubmited, setIsSubmited] = useState(false);
+
   const navigate = useNavigate();
 
   const handleFocus = (e) => {
@@ -40,6 +42,8 @@ const AuthForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmited) return;
+    setIsSubmited(true);
     if (mode === 'signin') {
       try {
         const res = await signIn(user);
@@ -54,15 +58,20 @@ const AuthForm = ({ mode }) => {
         }
       } catch (error) {
         alert('이메일 또는 비밀번호를 확인하세요.');
+      } finally {
+        setIsSubmited(false);
       }
     }
 
     if (mode === 'signup') {
-      const res = await signUp(user);
-
-      if (res.status === 201) {
-        setUser({ email: '', password: '' });
-        navigate('/signin');
+      try {
+        const res = await signUp(user);
+        if (res.status === 201) {
+          setUser({ email: '', password: '' });
+          navigate('/signin');
+        }
+      } finally {
+        setIsSubmited(false);
       }
     }
   };

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { authContext } from '../../context/AuthProvider';
+import { authContext } from '../context/AuthProvider';
 
 const Root = () => {
   const {

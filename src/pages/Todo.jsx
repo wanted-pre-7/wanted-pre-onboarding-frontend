@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createTodo } from '../../api';
-import Button from '../../components/common/Button';
-import Heading from '../../components/common/Heading';
+import { createTodo } from '../api';
+import Button from '../components/common/Button';
+import Heading from '../components/common/Heading';
 
-import Lists from '../../components/todo/Lists';
-import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
-import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import Lists from '../components/todo/Lists';
+import { authContext, AUTH_ACTION } from '../context/AuthProvider';
+import { todoContext, TODO_ACTION_TYPE } from '../context/TodoProvider';
 
 const Todo = () => {
   const { dispatch } = useContext(todoContext);

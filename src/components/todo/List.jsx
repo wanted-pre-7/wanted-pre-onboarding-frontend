@@ -8,7 +8,10 @@ const List = ({ todo: { todo, id, isCompleted }, todoDispatch }) => {
   const [editedTitle, setEditedTitle] = useState(todo);
 
   const handleChange = (e) => setEditedTitle(e.target.value);
-  const handleEditClick = () => setIsEditing((prev) => !prev);
+  const handleEditClick = () => {
+    if (!isEditing) setEditedTitle(todo);
+    setIsEditing((prev) => !prev);
+  };
 
   const handleCheckBox = async (id, title, isCompleted) => {
     const res = await updateTodo(id, title, !isCompleted);
@@ -23,6 +26,11 @@ const List = ({ todo: { todo, id, isCompleted }, todoDispatch }) => {
   };
 
   const handleUpdate = async (id, title, isCompleted) => {
+    if (todo === title) {
+      setIsEditing((cur) => !cur);
+      return;
+    }
+
     const res = await updateTodo(id, title, isCompleted);
 
     if (res.status === 200) {

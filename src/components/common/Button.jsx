@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const Button = ({ ...rest }) => {
-  return <StyledButton {...rest} />;
+  return <S.Button {...rest} />;
 };
 
-const StyledButton = styled.button`
+const S = {};
+S.Button = styled.button`
   padding: 8px;
   border: 2px solid #fb923c;
   background-color: transparent;

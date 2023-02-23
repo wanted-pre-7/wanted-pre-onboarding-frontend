@@ -3,21 +3,22 @@ import styled from 'styled-components';
 
 const Layout = () => {
   return (
-    <Main>
-      <Container>
+    <S.Main>
+      <S.Container>
         <Outlet />
-      </Container>
-    </Main>
+      </S.Container>
+    </S.Main>
   );
 };
 
-const Main = styled.main`
+const S = {};
+S.Main = styled.main`
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-const Container = styled.div`
+S.Container = styled.div`
   flex: 1;
   max-width: 500px;
   padding: 24px;

@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 const ActionLink = ({ question, to, text }) => {
   return (
-    <StyledActionLink>
+    <S.ActionLink>
       {question} <Link to={to}>{text}</Link>
-    </StyledActionLink>
+    </S.ActionLink>
   );
 };
 
-const StyledActionLink = styled.div`
+const S = {};
+S.ActionLink = styled.div`
   font-size: 15px;
 
   a {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { deleteTodo, updateTodo } from '../../api';
+import { deleteTodo, updateTodo } from '../../api/todo';
 import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
@@ -50,9 +50,9 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
 
   if (isEditing) {
     return (
-      <TodoList>
+      <S.TodoList>
         <div>
-          <TextInput
+          <S.TextInput
             type="text"
             value={editedTitle}
             onChange={handleChange}
@@ -60,57 +60,58 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
             data-testid="modify-input"
           />
         </div>
-        <ButtonWrapper>
-          <Button
+        <S.ButtonWrapper>
+          <S.Button
             type="button"
             onClick={() => handleUpdate(id, editedTitle, isCompleted)}
             data-testid="submit-button"
           >
             ✔️
-          </Button>
-          <Button
+          </S.Button>
+          <S.Button
             type="button"
             onClick={handleEditClick}
             data-testid="cancel-button"
           >
             ❌
-          </Button>
-        </ButtonWrapper>
-      </TodoList>
+          </S.Button>
+        </S.ButtonWrapper>
+      </S.TodoList>
     );
   }
 
   return (
-    <TodoList>
-      <CheckInputWrapper>
+    <S.TodoList>
+      <S.CheckInputWrapper>
         <input
           type="checkbox"
           checked={isCompleted}
           onChange={() => handleCheckBox(id, editedTitle, isCompleted)}
         />
-        <TodoTitle isCompleted={isCompleted}>{todo}</TodoTitle>
-      </CheckInputWrapper>
-      <ButtonWrapper>
-        <Button
+        <S.TodoTitle isCompleted={isCompleted}>{todo}</S.TodoTitle>
+      </S.CheckInputWrapper>
+      <S.ButtonWrapper>
+        <S.Button
           type="button"
           onClick={handleEditClick}
           data-testid="modify-button"
         >
           📝
-        </Button>
-        <Button
+        </S.Button>
+        <S.Button
           type="button"
           onClick={() => handleClickDelete(id)}
           data-testid="delete-button"
         >
           ❌
-        </Button>
-      </ButtonWrapper>
-    </TodoList>
+        </S.Button>
+      </S.ButtonWrapper>
+    </S.TodoList>
   );
 };
 
-const TodoList = styled.li`
+const S = {};
+S.TodoList = styled.li`
   width: 100%;
   display: flex;
   align-items: center;
@@ -126,7 +127,7 @@ const TodoList = styled.li`
   margin: 8px 0;
 `;
 
-const CheckInputWrapper = styled.div`
+S.CheckInputWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -140,12 +141,12 @@ const CheckInputWrapper = styled.div`
   }
 `;
 
-const TodoTitle = styled.span`
+S.TodoTitle = styled.span`
   text-decoration: ${({ isCompleted }) =>
     isCompleted ? 'line-through' : 'none'};
 `;
 
-const TextInput = styled.input`
+S.TextInput = styled.input`
   padding: 4px 8px;
   border-radius: 4px;
   border: 1px solid #9ca3af;
@@ -154,13 +155,13 @@ const TextInput = styled.input`
   width: 80%;
 `;
 
-const ButtonWrapper = styled.div`
+S.ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
 `;
 
-const Button = styled.button`
+S.Button = styled.button`
   padding: 8px;
   font-size: 16px;
 `;

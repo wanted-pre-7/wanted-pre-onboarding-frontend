@@ -8,7 +8,7 @@ const Input = ({ type, placeholder, id, formUser, setFormUser }) => {
   };
 
   return (
-    <StyledInput
+    <S.Input
       type={type}
       id={id}
       placeholder={placeholder}
@@ -20,7 +20,8 @@ const Input = ({ type, placeholder, id, formUser, setFormUser }) => {
   );
 };
 
-const StyledInput = styled.input`
+const S = {};
+S.Input = styled.input`
   padding: 8px;
   border: 1px solid #777;
   border-radius: 4px;

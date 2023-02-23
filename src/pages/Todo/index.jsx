@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createTodo } from '../../api';
+import { createTodo } from '../../api/todo';
 import Button from '../../components/common/Button';
 import Heading from '../../components/common/Heading';
 
@@ -43,15 +43,15 @@ const Todo = () => {
 
   return (
     <div>
-      <Header>
+      <S.Header>
         <Heading title="Todo ✔️" />
         <Button type="button" onClick={handleClickLogOut}>
           로그아웃
         </Button>
-      </Header>
+      </S.Header>
       <Lists />
-      <Form onSubmit={handleSubmit}>
-        <Input
+      <S.Form onSubmit={handleSubmit}>
+        <S.Input
           type="text"
           value={todoTitle}
           autoFocus
@@ -66,25 +66,27 @@ const Todo = () => {
         >
           제출
         </Button>
-      </Form>
+      </S.Form>
     </div>
   );
 };
 
-const Header = styled.header`
+// styled-components
+const S = {};
+S.Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
 `;
 
-const Form = styled.form`
+S.Form = styled.form`
   display: flex;
   gap: 16px;
   padding-top: 16px;
 `;
 
-const Input = styled.input`
+S.Input = styled.input`
   width: 100%;
   padding: 8px 12px;
   color: #6b7280;

@@ -11,8 +11,8 @@ const LabelInput = ({
   setFormUser,
 }) => {
   return (
-    <Wrapper>
-      <Label htmlFor={id}>{label}</Label>
+    <S.Wrapper>
+      <S.Label htmlFor={id}>{label}</S.Label>
       <Input
         id={id}
         name={id}
@@ -21,17 +21,18 @@ const LabelInput = ({
         formUser={formUser}
         setFormUser={setFormUser}
       />
-    </Wrapper>
+    </S.Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const S = {};
+S.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
 
-const Label = styled.label`
+S.Label = styled.label`
   font-size: 18px;
   font-weight: 600;
 `;

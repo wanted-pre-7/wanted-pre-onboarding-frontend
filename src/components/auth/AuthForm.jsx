@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { signIn, signUp } from '../../api';
 import { authDescription } from '../../constant/formDescription';
-import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
+import { authContext } from '../../context/AuthProvider';
 import Button from '../common/Button';
 import ActionLink from './ActionLink';
 import LabelInput from './LabelInput';
 
 const AuthForm = ({ mode }) => {
+  const [isSubmited, setIsSubmited] = useState(false);
+
   const {
     emailPlaceholder,
     passwordPlaceholder,
@@ -40,21 +42,24 @@ const AuthForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmited === true) return;
+    setIsSubmited(true);
     if (mode === 'signin') {
       try {
         const res = await signIn(user);
 
         if (res.status === 200) {
-          dispatch({
-            type: AUTH_ACTION.SET_TOKEN,
-            token: res.data.access_token,
-          });
+          // dispatch({
+          //   type: AUTH_ACTION.SET_TOKEN,
+          //   token: res.data.access_token,
+          // });
           setUser({ email: '', password: '' });
           navigate('/todo');
         }
       } catch (error) {
         alert('이메일 또는 비밀번호를 확인하세요.');
       }
+      setIsSubmited(false);
     }
 
     if (mode === 'signup') {
@@ -68,6 +73,7 @@ const AuthForm = ({ mode }) => {
       } catch (error) {
         alert('이미 존재하는 사용자입니다.');
       }
+      setIsSubmited(false);
     }
   };
 

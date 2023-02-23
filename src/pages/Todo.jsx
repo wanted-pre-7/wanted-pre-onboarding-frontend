@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { createTodo } from '../api';
 import Button from '../components/common/Button';
 import Heading from '../components/common/Heading';
 
 import Lists from '../components/todo/Lists';
-import { authContext, AUTH_ACTION } from '../context/AuthProvider';
+import { authContext } from '../context/AuthProvider';
 import { todoContext, TODO_ACTION_TYPE } from '../context/TodoProvider';
 
 const Todo = () => {
@@ -16,8 +15,6 @@ const Todo = () => {
     dispatch: authDispatch,
   } = useContext(authContext);
   const [todoTitle, setTodoTitle] = useState('');
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,23 +26,17 @@ const Todo = () => {
     }
   };
 
-  const handleClickLogOut = () => {
-    authDispatch({
-      type: AUTH_ACTION.RESET_TOKEN,
-    });
-  };
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/signin');
-    }
-  }, [token]);
+  // const handleClickLogOut = () => {
+  //   authDispatch({
+  //     type: AUTH_ACTION.RESET_TOKEN,
+  //   });
+  // };
 
   return (
     <div>
       <Header>
         <Heading title="Todo ✔️" />
-        <Button type="button" onClick={handleClickLogOut}>
+        <Button type="button" onClick={null}>
           로그아웃
         </Button>
       </Header>

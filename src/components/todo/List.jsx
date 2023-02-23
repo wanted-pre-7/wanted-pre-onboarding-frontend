@@ -58,7 +58,11 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
         <ButtonWrapper>
           <Button
             type="button"
-            onClick={() => handleUpdate(id, editedTitle, isCompleted)}
+            onClick={() =>
+              editedTitle !== todo
+                ? handleUpdate(id, editedTitle, isCompleted)
+                : setIsEditing(false)
+            }
             data-testid="submit-button"
           >
             ✔️

@@ -48,7 +48,7 @@ const Todo = () => {
         />
         <Button
           type="submit"
-          disabled={todoTitle.length < 1}
+          disabled={todoTitle.trim().length < 1}
           data-testid="new-todo-add-button"
         >
           제출

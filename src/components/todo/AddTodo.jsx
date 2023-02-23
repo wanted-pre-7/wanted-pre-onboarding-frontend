@@ -6,15 +6,19 @@ import { TODO_ACTION_TYPE } from '../../constant/todoConstant';
 
 const AddTodo = ({ todoDispatch }) => {
   const [todoTitle, setTodoTitle] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const res = await createTodo(todoTitle);
-    if (res.status === 201) {
-      todoDispatch({ type: TODO_ACTION_TYPE.POST, todo: res.data });
-      setTodoTitle('');
+    const isTodoValid = todoTitle.trim().length > 0;
+    if (isTodoValid) {
+      const res = await createTodo(todoTitle);
+      if (res.status === 201) {
+        todoDispatch({ type: TODO_ACTION_TYPE.POST, todo: res.data });
+        setTodoTitle('');
+      }
     }
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input

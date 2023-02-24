@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { deleteTodo, updateTodo } from '../../api';
-import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { TODO_ACTION_TYPE } from '../../reducer';
 
-const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
+const Item = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo);
 
@@ -165,4 +165,4 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-export default List;
+export default Item;

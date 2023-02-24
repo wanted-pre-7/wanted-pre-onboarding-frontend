@@ -1,7 +1,3 @@
-import { createContext, useMemo, useReducer } from 'react';
-
-export const todoContext = createContext();
-
 export const TODO_ACTION_TYPE = {
   GET: 'GET',
   POST: 'POST',
@@ -9,9 +5,7 @@ export const TODO_ACTION_TYPE = {
   DELETE: 'DELETE',
 };
 
-const initialState = [];
-
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case TODO_ACTION_TYPE.GET:
       return [...action.todo];
@@ -28,18 +22,3 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
-const TodoProvider = ({ children }) => {
-  const [todos, dispatch] = useReducer(reducer, initialState);
-
-  const value = useMemo(
-    () => ({
-      todos,
-      dispatch,
-    }),
-    [todos, dispatch],
-  );
-
-  return <todoContext.Provider value={value}>{children}</todoContext.Provider>;
-};
-export default TodoProvider;

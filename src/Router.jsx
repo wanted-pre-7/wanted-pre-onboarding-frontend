@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/common/Layout';
-import TodoProvider from './context/TodoProvider';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Todo from './pages/Todo';
+import Todos from './pages/ToDos';
 import { authContext } from './context/AuthProvider';
 
 const Router = () => {
@@ -29,16 +28,8 @@ const Router = () => {
             element={token ? <Navigate to="/todo" replace /> : <SignUp />}
           />
           <Route
-            path="todo"
-            element={
-              token ? (
-                <TodoProvider>
-                  <Todo />
-                </TodoProvider>
-              ) : (
-                <Navigate to="/signin" />
-              )
-            }
+            path="todos"
+            element={token ? <Todos /> : <Navigate to="/signin" />}
           />
         </Route>
       </Routes>

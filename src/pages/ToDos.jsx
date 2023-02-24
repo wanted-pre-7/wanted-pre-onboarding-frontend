@@ -1,18 +1,31 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useReducer, useEffect } from 'react';
 import styled from 'styled-components';
-import { createTodo } from '../api';
+import { createTodo, getTodos } from '../api';
 import Button from '../components/common/Button';
 import Heading from '../components/common/Heading';
+import Item from '../components/todo/Item';
 
-import Lists from '../components/todo/Lists';
 import { authContext, AUTH_ACTION } from '../context/AuthProvider';
-import { todoContext, TODO_ACTION_TYPE } from '../context/TodoProvider';
+import { reducer, TODO_ACTION_TYPE } from '../reducer';
 
-const Todo = () => {
-  const { dispatch } = useContext(todoContext);
+const Todos = () => {
   const { dispatch: authDispatch } = useContext(authContext);
   const [todoTitle, setTodoTitle] = useState('');
+  const [todos, dispatch] = useReducer(reducer, []);
 
+  // 목록 불러오기 함수
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTodos();
+      if (res.status === 200) {
+        dispatch({ type: TODO_ACTION_TYPE.GET, todo: res.data });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 목록 추가 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,7 +50,17 @@ const Todo = () => {
           로그아웃
         </Button>
       </Header>
-      <Lists />
+      <div>
+        <ul>
+          {todos.length > 0 ? (
+            todos.map((todo) => (
+              <Item key={todo.id} todo={todo} dispatch={dispatch} />
+            ))
+          ) : (
+            <H4>할 일을 추가해 보세요!</H4>
+          )}
+        </ul>
+      </div>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -82,4 +105,8 @@ const Input = styled.input`
   font-size: 16px;
 `;
 
-export default Todo;
+const H4 = styled.h4`
+  text-align: center;
+`;
+
+export default Todos;

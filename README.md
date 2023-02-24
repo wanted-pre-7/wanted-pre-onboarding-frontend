@@ -2,14 +2,14 @@
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/styled component-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white">   
 </br>
 
-## :books: 과제
+## 📚 과제
 
 동료학습을 통해서 팀에서 생각한 원티드 프리온보딩 프론트엔드 [인턴십 선발 과제](https://github.com/walking-sunset/selection-task)의 Best Pratice를 만들고 제출해주세요  
   > Best Practice란 팀원들이 각자의 구현방법을 설명하고 토론했을 때 팀 안에서 이 방법이 가장 효율적이라고 판단되는 것
 
 <br/>  
 
-## 최종 결과
+## 🌟 최종 결과
 
 ### [배포 URL](http://wanted-pre-onboarding-frontend-che.s3-website.ap-northeast-2.amazonaws.com/signin)  
 
@@ -17,7 +17,7 @@
 
 </br>
 
-## 실행 방법
+## ❓ 실행 방법
 
 루트 경로에 `.env` 파일 생성 후 백엔드 주소 추가  
 (REACT_APP_API_URL=https://pre-onboarding-selection-task.shop/)
@@ -28,7 +28,7 @@ $ npm start
 ```
 <br/>  
 
-## 과제 수행 방식
+## 🔥 과제 수행 방식
 
 1. 협업 Tool 선정
 2. 사전에 수행한 과제에 대한 설명을 각자 노션에 공유
@@ -40,7 +40,7 @@ $ npm start
 
 <br/>
 
-## 협업 Tool
+## 🔨 협업 Tool
 
 * 노션
   - 각자 과제에 대한 설명 기술
@@ -52,7 +52,7 @@ $ npm start
 
 <br/>
 
-## Best Practice
+## 👍 Best Practice
 
 **<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/auth%EC%99%80-todo-%EC%83%81%ED%83%9C-%EA%B4%80%EB%A6%AC">1. auth와 todo</a>**   
     논의 : status와 Context 사용  
@@ -82,7 +82,7 @@ $ npm start
 
 <br/>
 
-## convention
+## 👏 convention
 
 ### **git Flow**
 * branch : 기능별 작업
@@ -154,14 +154,14 @@ $ npm start
 ```
 <br/>
 
-## 회고 및 회의록
+## ✏️ 회고 및 회의록
 [회고](https://www.notion.so/solwork/1-070861fff8d444b1ae9639b392c16314)  
 [7팀 과제 수행 회의록](https://solwork.notion.site/cfbf7c8530ab43f29695dcac5923fd1c)   
 [git wiki](https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki)  
 
 <br/>
 
-## 팀원
+## 😃 팀원
 
 
 <table>

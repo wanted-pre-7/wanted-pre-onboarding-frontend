@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { deleteTodo, updateTodo } from '../../api';
-import { TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { deleteTodo, updateTodo } from '../../api/todo';
+import { TODO_ACTION_TYPE } from '../../reducer/todoReducer';
 
 const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,9 +23,10 @@ const List = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   };
 
   const handleUpdate = async (id, title, isCompleted) => {
+    if (todo === title) return;
+
     try {
       const res = await updateTodo(id, title, isCompleted);
-
       if (res.status === 200) {
         dispatch({
           type: TODO_ACTION_TYPE.UPDATE,

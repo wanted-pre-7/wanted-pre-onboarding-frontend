@@ -1,12 +1,10 @@
-import { memo, useContext, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import styled from 'styled-components';
-import { getTodos } from '../../api';
-import { todoContext, TODO_ACTION_TYPE } from '../../context/TodoProvider';
+import { getTodos } from '../../api/todo';
+import { TODO_ACTION_TYPE } from '../../reducer/todoReducer';
 import List from './List';
 
-const Lists = () => {
-  const { todos, dispatch } = useContext(todoContext);
-
+const Lists = ({ todos, dispatch }) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getTodos();

@@ -13,6 +13,9 @@ const Todos = () => {
   const [todoTitle, setTodoTitle] = useState('');
   const [todos, dispatch] = useReducer(reducer, []);
 
+  // 추가 예외 처리
+  const isAddValid = todoTitle.trim().length > 0;
+
   // 목록 불러오기 함수
   useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +75,7 @@ const Todos = () => {
         />
         <Button
           type="submit"
-          disabled={todoTitle.length < 1}
+          disabled={!isAddValid}
           data-testid="new-todo-add-button"
         >
           제출

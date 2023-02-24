@@ -7,6 +7,8 @@ const Item = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo);
 
+  const isEditValid = editedTitle.trim().length > 0 && editedTitle !== todo;
+
   const handleChange = (e) => setEditedTitle(e.target.value);
   const handleEditClick = () => setIsEditing((prev) => !prev);
 
@@ -23,6 +25,12 @@ const Item = ({ todo: { todo, id, isCompleted }, dispatch }) => {
   };
 
   const handleUpdate = async (id, title, isCompleted) => {
+    // 수정 예외 처리
+    if (!isEditValid) {
+      handleEditClick();
+      return;
+    }
+
     try {
       const res = await updateTodo(id, title, isCompleted);
 

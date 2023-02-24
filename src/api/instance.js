@@ -13,3 +13,12 @@ client.interceptors.request.use((config) => {
   }
   return config;
 });
+
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const { response } = error;
+    if (response) alert(response.data.message);
+    return Promise.reject.error(error);
+  },
+);

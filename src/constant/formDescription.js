@@ -1,4 +1,4 @@
-export const authDescription = {
+export const AUTH_DESCRIPTION = {
   signin: {
     emailPlaceholder: '이메일을 입력하세요.',
     passwordPlaceholder: '비밀번호를 입력하세요.',

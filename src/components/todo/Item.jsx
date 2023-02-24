@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { deleteTodo, updateTodo } from '../../api';
+import { deleteTodo, updateTodo } from '../../api/todo';
 import { TODO_ACTION_TYPE } from '../../reducer';
 
 const Item = ({ todo: { todo, id, isCompleted }, dispatch }) => {

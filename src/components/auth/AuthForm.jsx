@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
+import { signIn, signUp } from '../../api/auth';
 import { authDescription } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';
@@ -50,7 +50,7 @@ const AuthForm = ({ mode }) => {
             token: res.data.access_token,
           });
           setUser({ email: '', password: '' });
-          navigate('/todo');
+          navigate('/todos');
         }
       } catch (error) {
         alert('이메일 또는 비밀번호를 확인하세요.');

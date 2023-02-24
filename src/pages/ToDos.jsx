@@ -1,6 +1,6 @@
 import { useContext, useState, useReducer, useEffect } from 'react';
 import styled from 'styled-components';
-import { createTodo, getTodos } from '../api';
+import { createTodo, getTodos } from '../api/todo';
 import Button from '../components/common/Button';
 import Heading from '../components/common/Heading';
 import Item from '../components/todo/Item';

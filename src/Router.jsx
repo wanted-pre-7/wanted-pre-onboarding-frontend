@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/common/Layout';
-import TodoProvider from './context/TodoProvider';
+import PrivateRoute from './components/common/PrivateRoute';
+import PublicRoute from './components/common/PublicRoute';
 import Root from './pages/Root';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -12,14 +13,28 @@ const Router = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Root />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route
+            path="signin"
+            element={
+              <PublicRoute>
+                <SignIn />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <PublicRoute>
+                <SignUp />
+              </PublicRoute>
+            }
+          />
           <Route
             path="todo"
             element={
-              <TodoProvider>
+              <PrivateRoute>
                 <Todo />
-              </TodoProvider>
+              </PrivateRoute>
             }
           />
         </Route>

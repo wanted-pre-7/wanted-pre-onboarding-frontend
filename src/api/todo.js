@@ -1,13 +1,4 @@
-import { client } from './core/api';
-
-// auth api
-export const signUp = async (user) => {
-  return client.post('/auth/signup', { ...user });
-};
-
-export const signIn = async (user) => {
-  return client.post('/auth/signin', { ...user });
-};
+import { client } from './instance';
 
 // todo api
 export const getTodos = async () => {

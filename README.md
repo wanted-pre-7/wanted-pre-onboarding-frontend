@@ -54,28 +54,28 @@ $ npm start
 
 ## Best Practice
 
-**1. auth와 todo**   
+**<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/auth%EC%99%80-todo-%EC%83%81%ED%83%9C-%EA%B4%80%EB%A6%AC">1. auth와 todo</a>**   
     논의 : status와 Context 사용  
     결과 : auth에는 Context API를 사용하고 Todo 상태관리시에는 reducx를 사용  
     이유 : 프로젝트 규모가 작아 Status만으로 충분한 듯 보이지만 auth는 전역으로 쓰이기 때문에 Context API가 적합함  
     Todo는 props drilling이 일어나기엔 규모가 작아 Status로 충분해 보임 하지만 reducer를 사용하면 상태를 분리해 재사용성을 높이고 다양한 액션을 가진 todo 상태 간의 관계을 파악하기 쉬움 가독성을 높일 수 있음
     
-**2. 로그인 여부에 따른 리다이렉트 처리**    
+**<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%97%AC%EB%B6%80%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%A6%AC%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EC%8B%9D">2. 로그인 여부에 따른 리다이렉트 처리</a>**    
    논의 : useEffect vs Router  
    결과 : Router를 이용한 리다이렉트 처리  
    이유 : 로직의 간결화, 가독성, 중복코드의 절약, 페이지가 마운트 되기전 리다이렉트 가능
 
-**3. 유효성 검사**    
+**<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC">3. 유효성 검사</a>**    
    논의 : 유효성 검사 추가 필요성  
    결과 : 유효성 검사 include 사용  
    이유 : 과제의 가이드라인 준수를 위해 유효성 검사는 추가하지 않음 다만 에러 처리 강화 로직 채택 ( 수정 모드 때 변경 사항 없으면 api 요청 하지않음, 로그인 폼 중복 제출 방지, todo 추가 시 공백 제외 1글자 이상일때 추가 등 )
 
-**4. 스타일링**  
+**<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/%EC%8A%A4%ED%83%80%EC%9D%BC%EB%A7%81">4. 스타일링</a>**  
    논의 : 가장 좋은 style  
    결과 : styled-components 사용  
    이유 : 동적으로 사용하기 용이함, 유지보수와 효율성을 높임, 전역 스타일링을 통해 일관적인 스타일 코드 작성 가능
 
-**5. api 함수**  
+**<a href="https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki/api">5. api 함수</a>**  
    논의 : axios instance interceptor 사용 유무  
    결과 : axios interceptor 사용 + api 분리  
    이유 : error를 전역으로 관리 가능, api를 분리함으로써 확장성과 가독성을 높임

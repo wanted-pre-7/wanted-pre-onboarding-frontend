@@ -28,6 +28,8 @@ const AuthForm = ({ mode }) => {
     password: false,
   });
 
+  const [isSubmited, setIsSubmited] = useState(false);
+
   const navigate = useNavigate();
 
   const handleFocus = (e) => {
@@ -40,16 +42,24 @@ const AuthForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmited === true) return;
+    setIsSubmited(true);
+
     if (mode === 'signin') {
       const res = await signIn(user);
 
       if (res.status === 200) {
-        dispatch({
-          type: AUTH_ACTION.SET_TOKEN,
-          token: res.data.access_token,
-        });
-        setUser({ email: '', password: '' });
-        navigate('/todo');
+        try {
+          dispatch({
+            type: AUTH_ACTION.SET_TOKEN,
+            token: res.data.access_token,
+          });
+          setUser({ email: '', password: '' });
+          navigate('/todo');
+        } finally {
+          setIsSubmited(false);
+        }
       }
     }
 

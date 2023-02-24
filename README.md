@@ -71,8 +71,8 @@ $ npm start
    이유 : 과제의 가이드라인 준수를 위해 유효성 검사는 추가하지 않음 다만 에러 처리 강화 로직 채택 ( 수정 모드 때 변경 사항 없으면 api 요청 하지않음, 로그인 폼 중복 제출 방지, todo 추가 시 공백 제외 1글자 이상일때 추가 등 )
 
 **4. 스타일링**  
-   논의 : 가장 좋은 style
-   결과 : styled-components 사용
+   논의 : 가장 좋은 style  
+   결과 : styled-components 사용  
    이유 : 동적으로 사용하기 용이함, 유지보수와 효율성을 높임, 전역 스타일링을 통해 일관적인 스타일 코드 작성 가능
 
 **5. api 함수**  
@@ -155,8 +155,9 @@ $ npm start
 <br/>
 
 ## 회고 및 회의록
-
-[7팀 과제 수행 회의록]([http://wanted-pre-onboarding-frontend-che.s3-website.ap-northeast-2.amazonaws.com/signin]) 
+[회고](https://www.notion.so/solwork/1-070861fff8d444b1ae9639b392c16314)  
+[7팀 과제 수행 회의록](https://solwork.notion.site/cfbf7c8530ab43f29695dcac5923fd1c)   
+[git wiki](https://github.com/wanted-pre-7/wanted-pre-onboarding-frontend/wiki)  
 
 <br/>
 

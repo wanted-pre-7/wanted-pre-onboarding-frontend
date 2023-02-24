@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signIn, signUp } from '../../api';
-import { authDescription } from '../../constant/formDescription';
+import { signIn, signUp } from '../../api/auth';
+import { AUTH_DESCRIPTION } from '../../constant/formDescription';
 import { authContext, AUTH_ACTION } from '../../context/AuthProvider';
 import Button from '../common/Button';
 import ActionLink from './ActionLink';
@@ -16,7 +16,7 @@ const AuthForm = ({ mode }) => {
     actionText,
     question,
     actionLink,
-  } = authDescription[mode];
+  } = AUTH_DESCRIPTION[mode];
   const { dispatch } = useContext(authContext);
   const [user, setUser] = useState({
     email: '',
@@ -27,6 +27,8 @@ const AuthForm = ({ mode }) => {
     email: false,
     password: false,
   });
+
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,33 +42,28 @@ const AuthForm = ({ mode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (mode === 'signin') {
-      try {
-        const res = await signIn(user);
 
-        if (res.status === 200) {
-          dispatch({
-            type: AUTH_ACTION.SET_TOKEN,
-            token: res.data.access_token,
-          });
-          setUser({ email: '', password: '' });
-          navigate('/todo');
-        }
-      } catch (error) {
-        alert('이메일 또는 비밀번호를 확인하세요.');
+    if (mode === 'signin') {
+      setIsSubmited(true);
+      const res = await signIn(user);
+      if (res.status === 200) {
+        dispatch({
+          type: AUTH_ACTION.SET_TOKEN,
+          token: res.data.access_token,
+        });
+        setUser({ email: '', password: '' });
+        navigate('/todo');
       }
+
+      if (res.status === 401) setIsSubmited(false);
     }
 
     if (mode === 'signup') {
-      try {
-        const res = await signUp(user);
+      const res = await signUp(user);
 
-        if (res.status === 201) {
-          setUser({ email: '', password: '' });
-          navigate('/signin');
-        }
-      } catch (error) {
-        alert('이미 존재하는 사용자입니다.');
+      if (res.status === 201) {
+        setUser({ email: '', password: '' });
+        navigate('/signin');
       }
     }
   };
@@ -103,7 +100,9 @@ const AuthForm = ({ mode }) => {
       <ActionWrapper>
         <Button
           type="submit"
-          disabled={!user.email.includes('@') || user.password.length < 8}
+          disabled={
+            !user.email.includes('@') || user.password.length < 8 || isSubmited
+          }
           data-testid={`${mode}-button`}
         >
           {buttonText}
